@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact · Mercator</title>
+<link rel="icon" href="img/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+.cwrap{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(32px,6vw,90px);padding-top:clamp(48px,7vw,90px);padding-bottom:clamp(64px,8vw,110px);align-items:start}
+.mode{display:inline-flex;margin-bottom:1.4rem}
+.mode button{padding:.7rem 1.2rem}
+#cf{background:#fff;border:1px solid var(--line);box-shadow:0 30px 70px rgba(15,44,82,.08)}
+#cf select{width:100%;border:1px solid var(--line);background:#fff;border-radius:var(--r);padding:.85rem 1rem;outline:none}
+.info-card{background:var(--navy);color:#fff;border-radius:14px;padding:clamp(24px,3vw,40px);position:sticky;top:110px}
+.info-card h3{font-size:1.8rem;margin-bottom:1.4rem}
+.info-card .ct-info{margin-top:0}
+.info-card small{color:var(--gold-2)!important}
+.info-card a:hover{color:var(--gold-2)}
+.ok{display:none;background:#eef7ee;border:1px solid #bfe0bf;color:#245b24;border-radius:var(--r);padding:.8rem 1rem;font-size:.9rem}
+@media (max-width:900px){.cwrap{grid-template-columns:1fr}.info-card{position:static}}
+</style>
+</head>
+<body>
+<div id="hd-slot"></div>
+<main>
+  <section class="phero img" style="--bg:url(img/band.jpg)">
+    <div class="wrap">
+      <div class="crumb2"><a id="homeA"></a> / <span id="crumbT"></span></div>
+      <div class="kicker" id="kick"></div>
+      <h1 id="title"></h1>
+      <p id="sub"></p>
+    </div>
+  </section>
+  <div class="wrap cwrap">
+    <div>
+      <div class="pills mode" id="pills"><span class="pill-ind" id="pillInd"></span><button type="button" data-m="buy"></button><button type="button" data-m="sell"></button></div>
+      <form id="cf" novalidate></form>
+    </div>
+    <aside class="info-card">
+      <h3 id="ctT"></h3>
+      <div class="ct-info">
+        <div><small id="lOffice"></small>Mercator Real Estate Portugal<br>Rua da Criatividade, Lote 6<br>2510-216 Óbidos</div>
+        <div class="two">
+          <div><small id="lPhone"></small><a href="tel:+351214658650">+351 21 465 86 50</a></div>
+          <div><small id="lMobile"></small><a href="tel:+351934662268">+351 93 466 22 68</a></div>
+          <div><small id="lEmail"></small><a href="mailto:mercator@mercator.pt">mercator@mercator.pt</a><br><a href="mailto:estoril@mercator-group.net">estoril@mercator-group.net</a></div>
+          <div><small>WhatsApp</small><a href="https://api.whatsapp.com/send?phone=351912333450" target="_blank" rel="noopener">+351 912 333 450</a></div>
+        </div>
+        <div><small id="lHours"></small><span id="hours"></span></div>
+      </div>
+    </aside>
+  </div>
+</main>
+<div id="ft-slot"></div>
+<script src="i18n.js"></script>
+<script src="i18n-property.js"></script>
+<script src="i18n-pages.js"></script>
+<script src="common.js"></script>
+<script>
+(function(){
+  var esc=M.esc, mode=M.Q.get('mode')==='sell'?'sell':'buy';
+  function $(i){return document.getElementById(i)}
+  function f(name,label,type,full,ph){return '<label'+(full?' class="full"':'')+'><small>'+esc(label)+'</small>'+(type==='textarea'?'<textarea name="'+name+'" placeholder="'+esc(ph||'')+'"></textarea>':'<input name="'+name+'" type="'+(type||'text')+'" placeholder="'+esc(ph||'')+'">')+'</label>'}
+  function s(name,label,opts,full){return '<label'+(full?' class="full"':'')+'><small>'+esc(label)+'</small><select name="'+name+'">'+opts.map(function(o){return '<option>'+esc(o)+'</option>'}).join('')+'</select></label>'}
+  function render(){
+    var t=M.T(), buy=mode==='buy';
+    document.title=(buy?t.cta_look:t.cta_list)+' · Mercator';
+    $('kick').textContent=t.c_kicker;$('title').textContent=buy?t.cta_look:t.cta_list;$('sub').textContent=buy?t.c_buy_sub:t.c_sell_sub;
+    $('crumbT').textContent=t.nav_contact;var hm=$('homeA');hm.textContent=t.home;hm.href=M.link('index.html');
+    document.querySelectorAll('#pills [data-m]').forEach(function(b){var m=b.getAttribute('data-m');b.textContent=m==='buy'?t.cta_look:t.cta_list;b.setAttribute('aria-pressed',m===mode)});
+    $('ctT').textContent=t.ct_title;$('lOffice').textContent=t.ct_office;$('lPhone').textContent=t.ct_phone;$('lMobile').textContent=t.ct_mobile;$('lEmail').textContent=t.ct_email;$('lHours').textContent=t.ct_hours;$('hours').textContent=t.ct_hours_v;
+    var regions=[t.f_any].concat(M.REGIONS.map(function(r){return t[r[1]]})), types=[t.f_any,t.t_apartment,t.t_house,t.t_land,t.t_other];
+    var h=f('name',t.fm_name)+f('email',t.fm_email,'email')+f('phone',t.fm_phone,'tel',true);
+    if(buy)h+=s('region',t.f_region,regions)+s('type',t.f_type,types)+f('budget',t.c_budget,'text',false,'€')+s('beds',t.f_beds,[t.f_any,'1+','2+','3+','4+','5+'])+s('life',t.f_life,[t.f_any].concat(M.LIFE.map(function(l){return t[l[1]]})),true);
+    else h+=s('type',t.c_ptype,types.slice(1))+s('region',t.f_region,regions.slice(1))+f('addr',t.c_addr,'text',true)+f('beds',t.f_beds,'number')+f('ask',t.c_ask,'text',false,'€');
+    h+=f('msg',buy?t.fm_msg:t.c_wish,'textarea',true,buy?t.fm_msg_ph:'');
+    h+='<label class="consent full"><input type="checkbox" name="ok"><span>'+t.fm_consent.replace('{terms}',M.link('legal.html',{doc:'terms'})).replace('{privacy}',M.link('legal.html',{doc:'privacy'})).replace(/ target="_blank" rel="noopener"/g,'')+'</span></label>';
+    h+='<p class="ferr full" id="ferr">'+esc(t.fm_err)+'</p><p class="ok full" id="okm">'+esc(t.c_sent)+'</p><div class="full"><button class="btn btn-navy" type="submit">'+esc(t.fm_send)+' <span class="arrow">→</span></button></div>';
+    $('cf').innerHTML=h;
+    requestAnimationFrame(pill);
+  }
+  function pill(){var on=document.querySelector('#pills [aria-pressed=true]'),ind=$('pillInd');if(on){ind.style.width=on.offsetWidth+'px';ind.style.transform='translateX('+on.offsetLeft+'px)'}}
+  document.addEventListener('click',function(e){var b=e.target.closest('#pills [data-m]');if(!b)return;mode=b.getAttribute('data-m');var u=new URL(location.href);u.searchParams.set('mode',mode);history.replaceState(null,'',u);render()});
+  $('cf').addEventListener('submit',function(e){
+    e.preventDefault();var F=e.target,t=M.T();
+    if(!F.name.value.trim()||!/^\S+@\S+\.\S+$/.test(F.email.value)||!F.ok.checked){$('ferr').style.display='block';return}
+    $('ferr').style.display='none';
+    var lines=[];Array.prototype.forEach.call(F.querySelectorAll('input:not([type=checkbox]),select,textarea'),function(el){if(el.value&&el.value!==t.f_any)lines.push(el.closest('label').querySelector('small').textContent+': '+el.value)});
+    lines.push(t.lang_label+': '+t._name);
+    $('okm').style.display='block';
+    location.href='mailto:mercator@mercator.pt?subject='+encodeURIComponent((mode==='buy'?t.cta_look:t.cta_list)+' — mercator.pt')+'&body='+encodeURIComponent(lines.join('\n'));
+  });
+  window.addEventListener('resize',pill);
+  M.onLang(render); render();
+})();
+</script>
+</body>
+</html>

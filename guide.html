@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buying guide · Mercator</title>
+<meta name="description" content="How buying a home in Portugal works — Mercator's buyer's guide.">
+<link rel="icon" href="img/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div id="hd-slot"></div>
+<main>
+  <section class="phero img" style="--bg:url(img/hero-26948793.jpg)">
+    <div class="wrap">
+      <div class="crumb2"><a id="homeA"></a> / <span id="crumbT"></span></div>
+      <div class="kicker" id="kick"></div>
+      <h1 id="title"></h1>
+      <p id="intro"></p>
+    </div>
+  </section>
+  <div class="wrap doc">
+    <aside class="toc"><h4 id="tocT"></h4><ol id="toc"></ol><div class="side-cta"><p id="ctaT"></p><a class="btn btn-gold" id="ctaA"></a></div></aside>
+    <article class="prose" id="body"></article>
+  </div>
+</main>
+<div id="ft-slot"></div>
+<script src="i18n.js"></script>
+<script src="i18n-property.js"></script>
+<script src="i18n-pages.js"></script>
+<script src="data/pages.js"></script>
+<script src="common.js"></script>
+<script>
+(function(){
+  var esc=M.esc;
+  function tip(tx){var m=tx.match(/^([^:,;?]{3,60}[:,;?])\s*(.*)$/);return m?'<div><b>'+esc(m[1].replace(/[:,;]$/,''))+'</b>'+esc(m[2])+'</div>':'<div>'+esc(tx)+'</div>'}
+  function render(){
+    var t=M.T(), B=(PAGES.guide[M.lang]||PAGES.guide.en).slice(), h='', toc='', n=0, i=0;
+    document.title=t.nav_guide+' · Mercator';
+    document.getElementById('kick').textContent=t.pr_kicker;
+    document.getElementById('title').textContent=t.nav_guide;
+    document.getElementById('crumbT').textContent=t.nav_guide;
+    var home=document.getElementById('homeA');home.textContent=t.home;home.href=M.link('index.html');
+    document.getElementById('intro').textContent=B[0]&&B[0][0]==='p'?B.shift()[1]:'';
+    document.getElementById('tocT').textContent=t.g_toc;
+    document.getElementById('ctaT').textContent=t.g_cta;
+    var c=document.getElementById('ctaA');c.innerHTML=esc(t.nav_contact)+' <span class="arrow">→</span>';c.href=M.link('contact.html',{mode:'buy'});
+    while(i<B.length){
+      var b=B[i], tag=b[0], tx=b[1];
+      if(tag==='p'&&tx.length<40&&!/[.!?:]$/.test(tx)){i++;continue}
+      if(tag==='h3'){n++;var id='s'+n;toc+='<li><a href="#'+id+'">'+esc(tx)+'</a></li>';h+='<h3 id="'+id+'"><span class="n">'+String(n).padStart(2,'0')+'</span>'+esc(tx)+'</h3>';i++;continue}
+      if(tag==='lead'){h+='<p class="lead">'+esc(tx)+'</p>';i++;continue}
+      if(tag==='tip'){var g='';while(i<B.length&&B[i][0]==='tip'){g+=tip(B[i][1]);i++}h+='<div class="tips">'+g+'</div>';continue}
+      if(tag==='li'){var l='';while(i<B.length&&B[i][0]==='li'){l+='<li>'+esc(B[i][1])+'</li>';i++}h+='<div class="costbox"><ul>'+l+'</ul></div>';continue}
+      h+='<p>'+esc(tx)+'</p>';i++;
+    }
+    document.getElementById('body').innerHTML=h;
+    document.getElementById('toc').innerHTML=toc;
+    spy();
+  }
+  var io;
+  function spy(){
+    if(!('IntersectionObserver' in window))return; if(io)io.disconnect();
+    io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){document.querySelectorAll('#toc a').forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-20% 0px -70% 0px'});
+    document.querySelectorAll('#body h3').forEach(function(h){io.observe(h)});
+  }
+  M.onLang(render); render();
+})();
+</script>
+</body>
+</html>

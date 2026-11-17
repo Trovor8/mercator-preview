@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mercator</title>
+<link rel="icon" href="img/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div id="hd-slot"></div>
+<main class="legaldoc">
+  <section class="phero" style="padding-bottom:56px">
+    <div class="wrap">
+      <div class="crumb2"><a id="homeA"></a> / <span id="crumbT"></span></div>
+      <div class="kicker">Mercator · AMI 203</div>
+      <h1 id="title"></h1>
+    </div>
+  </section>
+  <div class="wrap doc">
+    <aside class="toc"><h4 id="tocT"></h4><ol id="toc"></ol></aside>
+    <article class="prose" id="body"></article>
+  </div>
+</main>
+<div id="ft-slot"></div>
+<script src="i18n.js"></script>
+<script src="i18n-property.js"></script>
+<script src="i18n-pages.js"></script>
+<script src="data/pages.js"></script>
+<script src="common.js"></script>
+<script>
+(function(){
+  var esc=M.esc, doc=M.Q.get('doc'); if(!PAGES[doc]||doc==='about'||doc==='guide')doc='terms';
+  var NAMES={terms:'ft_terms',privacy:'ft_privacy',ral:'ft_ral'};
+  function render(){
+    var t=M.T(), B=PAGES[doc][M.lang]||PAGES[doc].en, h='', toc='', n=0, title=t[NAMES[doc]];
+    document.title=title+' · Mercator';
+    document.getElementById('title').textContent=title;
+    document.getElementById('crumbT').textContent=title;
+    var home=document.getElementById('homeA');home.textContent=t.home;home.href=M.link('index.html');
+    document.getElementById('tocT').textContent=t.g_toc;
+    var list='';
+    B.forEach(function(b,i){
+      var tag=b[0],tx=b[1];
+      if(tag==='h1')return;
+      if(doc==='ral'&&i>1&&tag==='p'&&!/[.:]$/.test(tx)){list+='<li>'+esc(tx)+'</li>';return}
+      if(list){h+='<ul>'+list+'</ul>';list=''}
+      if(tag==='h2'||tag==='h3'){n++;var id=(/^6\./.test(tx)&&doc==='privacy')?'cookies':'s'+n;toc+='<li><a href="#'+id+'">'+esc(tx.replace(/^\d+\.\s*/,''))+'</a></li>';h+='<h3 id="'+id+'">'+esc(tx)+'</h3>';return}
+      h+='<p>'+esc(tx)+'</p>';
+    });
+    if(list)h+='<ul>'+list+'</ul>';
+    document.getElementById('body').innerHTML=h;
+    document.getElementById('toc').innerHTML=toc;
+    document.querySelector('.toc').style.display=toc?'':'none';
+    if(location.hash){var el=document.querySelector(location.hash);if(el)setTimeout(function(){el.scrollIntoView()},50)}
+  }
+  M.onLang(render); render();
+})();
+</script>
+</body>
+</html>

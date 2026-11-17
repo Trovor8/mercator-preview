@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mercator Real Estate</title>
+<meta name="description" content="">
+<link rel="alternate" hreflang="pt-PT" href="?lang=pt">
+<link rel="alternate" hreflang="en-GB" href="?lang=en">
+<link rel="alternate" hreflang="sv-SE" href="?lang=sv">
+<link rel="alternate" hreflang="nl-NL" href="?lang=nl">
+<link rel="alternate" hreflang="nb-NO" href="?lang=no">
+<link rel="alternate" hreflang="de-DE" href="?lang=de">
+<link rel="alternate" hreflang="x-default" href="?lang=pt">
+<link rel="icon" href="img/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<header id="hd">
+  <div class="wrap hd">
+    <a class="logo" href="#top" aria-label="Mercator">
+      <img src="img/logo-mark.png" alt="">
+      <div><b>MERCATOR</b><small>Real Estate · Portugal</small></div>
+    </a>
+    <nav class="main">
+      <a href="#properties" data-t="nav_properties"></a>
+      <a href="#regions" data-t="nav_regions"></a>
+      <a href="#guide" data-t="nav_guide"></a>
+      <a href="#about" data-t="nav_about"></a>
+      <a href="#contact" data-t="nav_contact"></a>
+    </nav>
+    <div class="hd-right">
+      <a class="call" href="tel:+351214658650">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+        +351 21 465 86 50
+      </a>
+      <div class="langs">
+        <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+          <span id="langCode">EN</span>
+        </button>
+        <div class="lang-menu" id="langMenu" role="menu"></div>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer">
+  <button class="x" id="drawerX" data-t="close"></button>
+  <a href="#properties" data-t="nav_properties"></a>
+  <a href="#regions" data-t="nav_regions"></a>
+  <a href="#guide" data-t="nav_guide"></a>
+  <a href="#about" data-t="nav_about"></a>
+  <a href="#contact" data-t="nav_contact"></a>
+  <a href="tel:+351214658650" style="font-family:var(--sans);font-size:1rem;color:var(--gold-2)">+351 21 465 86 50</a>
+  <div class="d-langs" id="dLangs"></div>
+</div>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="slides" id="slides"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <div class="kicker fade-up" data-t="hero_kicker"></div>
+      <h1 id="heroTitle" data-t="hero_title"></h1>
+      <p class="sub fade-up" style="animation-delay:.7s" data-t="hero_sub"></p>
+      <div class="search glass fade-up" style="animation-delay:.9s">
+        <label>
+          <small data-t="s_region"></small>
+          <select id="sRegion"></select>
+        </label>
+        <a class="btn btn-gold go" id="sGo"><span data-t="s_go"></span> <span class="arrow">→</span></a>
+        <form class="refbox" id="refForm">
+          <input id="sRef" data-ph="s_ref_ph" aria-label="Reference">
+          <button type="submit" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="showcase glass fade-up" style="animation-delay:1.15s" id="showcase">
+      <div class="sc-top"><span class="live" data-t="hero_now"></span><span class="sc-idx" id="scIdx"></span></div>
+      <div class="sc-body" id="scBody"></div>
+      <div class="sc-foot">
+        <a class="sc-link" id="scLink"><span data-t="hero_view"></span> <span class="arrow">→</span></a>
+        <button class="sc-nav" id="scPrev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="sc-nav" id="scNext" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+      <div class="sc-bars" id="scBars"></div>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#trust"><span data-t="scroll"></span><i></i></a>
+</section>
+
+<section class="trust" id="trust">
+  <div class="wrap stats">
+    <div class="stat"><b data-t="stat1_n" data-count></b><span data-t="stat1_l"></span></div>
+    <div class="stat"><b data-t="stat2_n" data-count></b><span data-t="stat2_l"></span></div>
+    <div class="stat"><b data-t="stat3_n" data-count></b><span data-t="stat3_l"></span></div>
+    <div class="stat"><b data-t="stat4_n"></b><span data-t="stat4_l"></span></div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section id="properties" class="showroom">
+  <div class="wrap">
+    <div class="sr-head rv">
+      <div>
+        <div class="kicker" data-t="feat_kicker"></div>
+        <h2><span data-t="feat_title"></span> <sup class="sr-count" id="srCount"></sup></h2>
+      </div>
+      <div class="sr-tools">
+        <div class="pills" id="pills" role="group">
+          <span class="pill-ind" id="pillInd"></span>
+          <button data-f="all" aria-pressed="true"><span data-t="f_all"></span><em></em></button>
+          <button data-f="sale" aria-pressed="false"><span data-t="f_sale"></span><em></em></button>
+          <button data-f="rent" aria-pressed="false"><span data-t="f_rent"></span><em></em></button>
+        </div>
+      </div>
+    </div>
+    <div class="spot rv" id="spot"></div>
+  </div>
+  <div class="rail-wrap rv">
+    <div class="rail" id="rail"></div>
+  </div>
+  <div class="wrap rail-foot">
+    <div class="rail-prog"><i id="railBar"></i></div>
+    <span class="drag-hint"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg><span data-t="drag"></span></span>
+    <div class="rail-nav">
+      <button id="railPrev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button id="railNext" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+    <a class="btn btn-line" id="allProps"><span data-t="all_props"></span> <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- REGIONS -->
+<section class="regions" id="regions">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker" data-t="reg_kicker"></div>
+      <h2 data-t="reg_title"></h2>
+      <p class="lead" data-t="reg_sub"></p>
+    </div>
+    <div class="reg-list rv" id="regList"></div>
+  </div>
+</section>
+
+<!-- LIFESTYLE -->
+<section id="lifestyle">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker" data-t="ls_kicker"></div>
+      <h2 data-t="ls_title"></h2>
+    </div>
+    <div class="ls rv" id="ls"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-img rv">
+      <img class="main" src="img/ls-city.jpg" alt="" loading="lazy">
+      <div class="seal"><img src="img/logo.png" alt="Mercator — 50 years"></div>
+    </div>
+    <div class="rv">
+      <div class="kicker" data-t="ab_kicker"></div>
+      <h2 data-t="ab_title"></h2>
+      <p data-t="ab_p1"></p>
+      <p data-t="ab_p2"></p>
+      <ul class="ticks">
+        <li data-t="ab_b1"></li><li data-t="ab_b2"></li><li data-t="ab_b3"></li>
+      </ul>
+      <a class="btn btn-navy" id="aboutLink"><span data-t="ab_more"></span> <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="guide" class="journey">
+  <div class="wrap">
+    <div class="j-head rv">
+      <div><div class="kicker" data-t="pr_kicker"></div><h2 data-t="pr_title"></h2></div>
+      <p class="lead" data-t="pr_sub"></p>
+    </div>
+    <div class="j-grid">
+      <div class="j-left">
+        <div class="j-frame" id="jFrame"><img src="img/ls-sea.jpg" alt="" loading="lazy" class="on"><img src="img/hero-26948793.jpg" alt="" loading="lazy"><img src="img/band.jpg" alt="" loading="lazy"><img src="img/hero-27002199.jpg" alt="" loading="lazy"><img src="img/ls-city.jpg" alt="" loading="lazy"><img src="img/hero-26967021.jpg" alt="" loading="lazy">
+          <div class="j-count"><b id="jNum">01</b><span>/ 06</span></div>
+          <div class="j-prog"><i id="jProg"></i></div>
+        </div>
+      </div>
+      <ol class="j-list" id="jList">
+        <span class="j-line"><i id="jLine"></i></span>
+        <li class="jstep" data-i="0">
+          <span class="jdot"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
+          <div class="jtxt"><span class="jn">01</span><h3 data-t="st1_t"></h3><p data-t="st1_d"></p></div>
+        </li>
+        <li class="jstep" data-i="1">
+          <span class="jdot"><svg viewBox="0 0 24 24"><path d="M18 7a7 7 0 1 0 0 10M4 10h10M4 14h10"/></svg></span>
+          <div class="jtxt"><span class="jn">02</span><h3 data-t="st2_t"></h3><p data-t="st2_d"></p></div>
+        </li>
+        <li class="jstep" data-i="2">
+          <span class="jdot"><svg viewBox="0 0 24 24"><path d="M8 12l3 3 5-6"/><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0"/></svg></span>
+          <div class="jtxt"><span class="jn">03</span><h3 data-t="st3_t"></h3><p data-t="st3_d"></p></div>
+        </li>
+        <li class="jstep" data-i="3">
+          <span class="jdot"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <div class="jtxt"><span class="jn">04</span><h3 data-t="st4_t"></h3><p data-t="st4_d"></p></div>
+        </li>
+        <li class="jstep" data-i="4">
+          <span class="jdot"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg></span>
+          <div class="jtxt"><span class="jn">05</span><h3 data-t="st5_t"></h3><p data-t="st5_d"></p></div>
+        </li>
+        <li class="jstep" data-i="5">
+          <span class="jdot"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg></span>
+          <div class="jtxt"><span class="jn">06</span><h3 data-t="st6_t"></h3><p data-t="st6_d"></p></div>
+        </li>
+      </ol>
+    </div>
+    <div class="costs rv">
+      <div>
+        <h3 data-t="cost_title"></h3>
+        <p class="note" data-t="cost_note"></p>
+        <a class="btn btn-line" id="guideLink"><span data-t="guide_cta"></span> <span class="arrow">→</span></a>
+      </div>
+      <dl>
+        <dt data-t="c1"></dt><dd data-t="c1v"></dd>
+        <dt data-t="c2"></dt><dd data-t="c2v"></dd>
+        <dt data-t="c3"></dt><dd data-t="c3v"></dd>
+        <dt data-t="c4"></dt><dd data-t="c4v"></dd>
+        <dt data-t="c5"></dt><dd data-t="c5v"></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="band">
+  <div class="wrap rv">
+    <h2 data-t="cta_title"></h2>
+    <p data-t="cta_sub"></p>
+    <div class="btns">
+      <a class="btn btn-gold" id="lookLink"><span data-t="cta_look"></span> <span class="arrow">→</span></a>
+      <a class="btn btn-line" id="listLink"><span data-t="cta_list"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="clients">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker" data-t="t_kicker"></div>
+      <h2 data-t="t_title"></h2>
+    </div>
+    <div class="quotes rv">
+      <blockquote class="quote" lang="en"><p>I would like to take the opportunity to send a big thank to all of you, you made buying a property in a foreign country very easy.</p><cite>Fredrik</cite></blockquote>
+      <blockquote class="quote" lang="en"><p>We saw many items as desired, and suddenly it was there: Dream House!</p><cite>Izabella &amp; Filip</cite></blockquote>
+      <blockquote class="quote" lang="sv"><p>Tack snälla för ert varma engagemang för att hjälpa oss genomföra vår dröm.</p><cite>Marlene &amp; Conny</cite></blockquote>
+      <blockquote class="quote" lang="sv"><p>…känner jag bara en ren och skär lycka av att äga min tid och längtar redan efter en ny dag i paradiset.</p><cite data-t="t_client"></cite></blockquote>
+    </div>
+    <div class="brands rv">
+      <figure><img src="img/brand-maklarna.jpg" alt="Portugal Mäklarna" loading="lazy"><figcaption data-t="br_title"></figcaption></figure>
+      <figure><img src="img/brand-megleren.png" alt="Portugal Megleren" loading="lazy"><figcaption data-t="br_title"></figcaption></figure>
+      <figure><img src="img/cls.jpg" alt="Câmara de Comércio Luso-Sueca" loading="lazy"><figcaption data-t="br_member"></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap ct-grid">
+    <div class="rv">
+      <div class="kicker" data-t="ct_kicker"></div>
+      <h2 data-t="ct_title"></h2>
+      <div class="ct-info">
+        <div><small data-t="ct_office"></small>Mercator Real Estate Portugal<br>Rua da Criatividade, Lote 6<br>2510-216 Óbidos</div>
+        <div class="two">
+          <div><small data-t="ct_phone"></small><a href="tel:+351214658650">+351 21 465 86 50</a></div>
+          <div><small data-t="ct_mobile"></small><a href="tel:+351934662268">+351 93 466 22 68</a></div>
+          <div><small data-t="ct_email"></small><a href="mailto:mercator@mercator.pt">mercator@mercator.pt</a><br><a href="mailto:estoril@mercator-group.net">estoril@mercator-group.net</a></div>
+          <div><small data-t="ct_whatsapp"></small><a href="https://api.whatsapp.com/send?phone=351912333450" target="_blank" rel="noopener">+351 912 333 450</a></div>
+        </div>
+        <div><small data-t="ct_hours"></small><span data-t="ct_hours_v"></span></div>
+      </div>
+    </div>
+    <form id="cform" class="rv" novalidate>
+      <label><small data-t="fm_name"></small><input name="name" autocomplete="name" required></label>
+      <label><small data-t="fm_email"></small><input name="email" type="email" autocomplete="email" required></label>
+      <label class="full"><small data-t="fm_phone"></small><input name="phone" type="tel" autocomplete="tel"></label>
+      <label class="full"><small data-t="fm_msg"></small><textarea name="msg" data-ph="fm_msg_ph"></textarea></label>
+      <label class="consent full"><input type="checkbox" name="ok"><span data-t="fm_consent" data-html="1"></span></label>
+      <p class="ferr full" id="ferr" data-t="fm_err"></p>
+      <div class="full"><button class="btn btn-navy" type="submit"><span data-t="fm_send"></span> <span class="arrow">→</span></button></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div>
+        <img src="img/logo.png" alt="Mercator">
+        <p data-t="ft_tag"></p>
+        <div class="social">
+          <a href="https://www.facebook.com/MercatorPortugalMaklarna/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4 1.7-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg></a>
+          <a href="https://www.linkedin.com/company/mercatorrealestateportugal" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4z"/></svg></a>
+          <a href="https://api.whatsapp.com/send?phone=351912333450" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.2z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 data-t="nav_properties"></h4>
+        <ul id="ftRegions"></ul>
+      </div>
+      <div>
+        <h4>Mercator</h4>
+        <ul>
+          <li><a id="ftAbout" data-t="nav_about"></a></li>
+          <li><a id="ftGuide" data-t="nav_guide"></a></li>
+          <li><a href="#contact" data-t="nav_contact"></a></li>
+          <li><a href="tel:+351214658650">+351 21 465 86 50</a></li>
+          <li><a href="mailto:mercator@mercator.pt">mercator@mercator.pt</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>Mercator – Sociedade de Mediação Imobiliária, Lda. · AMI 203</span>
+      <div>
+        <a id="lgTerms" data-t="ft_terms"></a>
+        <a id="lgPrivacy" data-t="ft_privacy"></a>
+        <a id="lgCookies" data-t="ft_cookies"></a>
+        <a id="lgRal" data-t="ft_ral"></a>
+        <a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener" data-t="ft_claims"></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://api.whatsapp.com/send?phone=351912333450" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.2z"/></svg>
+</a>
+
+<script src="i18n.js"></script>
+<script src="i18n-property.js"></script>
+<script src="i18n-pages.js"></script>
+<script src="data/index.js"></script>
+<script>
+(function(){
+  var ORIGIN='https://www.mercator.pt';
+  var ORDER=['pt','en','sv','nl','no','de'];
+  var REGIONS=[['r_algarve','algarve'],['r_cascais','cascais'],['r_lisbon','lisbon'],['r_sintra','sintra'],['r_silver','silver'],['r_porto','porto'],['r_alentejo','alentejo'],['r_madeira','madeira']];
+  var LIFE=[['ls_sea','sea','ls-sea.jpg'],['ls_city','city','ls-city.jpg'],['ls_golf','golf','ls-golf.jpg'],['ls_country','country','ls-country.jpg'],['ls_luxury','luxury','ls-luxury.jpg']];
+  var lang='en', filter='all';
+
+  function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
+  function T(){return I18N[lang]}
+  function url(path){return ORIGIN+T()._base+'/'+path}
+  function link(page,params){var p=new URLSearchParams(params||{});p.set('lang',lang);var hh='';if(page.indexOf('#')>-1){hh=page.slice(page.indexOf('#'));page=page.slice(0,page.indexOf('#'))}return page+'?'+p+hh}
+  function img(u,s){return /^https?:|^img\//.test(u)?u.replace('{S}',s):'https://images.egorealestate.com/'+s+'/'+u}
+  var AVAIL=PROPS.filter(function(p){return !p.sold}), EXC={};
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+  function pickLang(){
+    var q=new URLSearchParams(location.search).get('lang');
+    if(q&&I18N[q]) return q;
+    var s=store('mercator_lang'); if(s&&I18N[s]) return s;
+    var nav=(navigator.language||'en').toLowerCase().slice(0,2);
+    if(nav==='nb'||nav==='nn') nav='no';
+    return I18N[nav]?nav:'en';
+  }
+
+  function fmtPrice(n){
+    var loc={pt:'pt-PT',en:'en-GB',sv:'sv-SE',nl:'nl-NL',no:'nb-NO',de:'de-DE'}[lang];
+    try{return new Intl.NumberFormat(loc,{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n)}catch(e){return n+' €'}
+  }
+
+  var ic={cam:'<svg viewBox="0 0 24 24"><path d="M4 7h3l2-3h6l2 3h3v13H4z"/><circle cx="12" cy="13" r="3.5"/></svg>',pin:'<svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>',bed:'<svg viewBox="0 0 24 24"><path d="M3 18V7M21 18v-5a3 3 0 0 0-3-3H10v8M3 14h18M6.5 11.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>',
+          bath:'<svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM6 12V5a2 2 0 0 1 4 0M7 19l-1 2M17 19l1 2"/></svg>'};
+
+  function frames(id,size,n){var p=PROPS.find(function(x){return x.id===id});return p?p.im.slice(0,n||5).map(function(u){return img(u,size)}):[]}
+  function excerpt(id){
+    var d=EXC[id]; if(!d){loadExc(id);return ''}
+    var L={desc:(d.t[lang]||{}).desc||'',title:PROPS.find(function(x){return x.id===id}).t[lang].title}, lines=(L.desc||'').split(/\n+/).map(function(s){return s.trim()}).filter(function(s){return s&&s.replace(/\.$/,'')!==L.title.replace(/\.$/,'')&&s.length>60});
+    var s=lines[0]||''; return s.length>230?s.slice(0,s.lastIndexOf(' ',225))+'…':s;
+  }
+  var ENERGY={'A+':'#0b7a3b','A':'#1a9641','B':'#52b151','B-':'#8cc63f','C':'#c4d82e','D':'#f4d03f','E':'#f39c12','F':'#e74c3c'};
+  function dots(n){var s='';for(var i=0;i<n;i++)s+='<i'+(i?'':' class="on"')+'></i>';return '<div class="sc-dots">'+s+'</div>'}
+
+  function renderGrid(){
+    var t=T(), all=AVAIL.filter(function(p){return filter==='all'||(filter==='rent')===p.rent}), list=all.slice(0,12);
+    // counts
+    var c={all:AVAIL.length,sale:AVAIL.filter(function(p){return !p.rent}).length,rent:AVAIL.filter(function(p){return p.rent}).length};
+    document.getElementById('allProps').href=link('properties.html',filter==='all'?{}:{f:filter});
+    document.querySelectorAll('#pills button').forEach(function(b){b.querySelector('em').textContent=c[b.getAttribute('data-f')]});
+    document.getElementById('srCount').textContent=String(all.length).padStart(2,'0');
+    movePill();
+
+    // spotlight
+    var p=list.reduce(function(m,x){return x.price>m.price?x:m},list[0]), L=p.t[lang], d={energy:p.energy}, area=p.area, fr=frames(p.id,'ZOriginal',6), href=link('property.html',{id:p.id});
+    document.getElementById('spot').innerHTML=
+      '<a class="spot-media scrub" href="'+href+'" data-frames=\''+JSON.stringify(fr)+'\'>'+
+        '<img src="'+fr[0]+'" alt="'+esc(L.title)+'" loading="lazy">'+dots(fr.length)+
+        '<span class="pc-badge'+(p.rent?' rent':'')+'">'+esc(p.rent?t.f_rent:t.f_sale)+'</span>'+
+        '<span class="pc-photos">'+ic.cam+p.n+'</span></a>'+
+      '<div class="spot-info">'+
+        '<div class="spot-label"><span>'+esc(t.feat_spot)+'</span><span>Ref. '+esc(p.ref)+'</span></div>'+
+        '<div class="spot-loc">'+ic.pin+esc(L.loc)+'</div>'+
+        '<h3>'+esc(L.title)+'</h3>'+
+        '<p id="spotExc">'+esc(excerpt(p.id))+'</p>'+
+        '<div class="spot-specs">'+
+          '<div><b>'+p.beds+'</b><span>'+esc(t.p_beds)+'</span></div>'+
+          '<div><b>'+p.baths+'</b><span>'+esc(t.p_baths)+'</span></div>'+
+          (area?'<div><b>'+Math.round(area)+'<small>m²</small></b><span>'+esc(t.p_living)+'</span></div>':'')+
+          (d.energy?'<div><b><i class="energy" style="background:'+(ENERGY[d.energy]||'#888')+'">'+esc(d.energy)+'</i></b><span>'+esc(t.p_energy)+'</span></div>':'')+
+        '</div>'+
+        '<div class="spot-foot"><div class="spot-price">'+fmtPrice(p.price)+(p.rent?'<small> '+esc(t.per_month)+'</small>':'')+'</div>'+
+          '<div class="spot-btns"><a class="btn btn-gold" href="'+href+'">'+esc(t.view)+' <span class="arrow">→</span></a><a class="btn btn-ghost" href="'+href+'#book">'+esc(t.p_viewing)+'</a></div></div>'+
+      '</div>';
+
+    // rail
+    document.getElementById('rail').innerHTML=list.filter(function(x){return x!==p}).map(function(p,i){
+      var L=p.t[lang], area=p.area, fr=frames(p.id,'Z1280x1024',5);
+      return '<a class="pc" href="'+link('property.html',{id:p.id})+'" style="--i:'+i+'">'+
+        '<div class="pc-media scrub" data-frames=\''+JSON.stringify(fr)+'\'><img src="'+fr[0]+'" alt="'+esc(L.title)+'" loading="lazy" draggable="false">'+dots(fr.length)+
+          '<span class="pc-badge'+(p.rent?' rent':'')+'">'+esc(p.rent?t.f_rent:t.f_sale)+'</span><span class="pc-photos">'+ic.cam+p.n+'</span>'+
+          '<div class="pc-over"><div class="pc-loc">'+esc(L.loc)+'</div><h3>'+esc(L.title)+'</h3>'+
+          '<div class="pc-meta"><span>'+ic.bed+p.beds+'</span><span>'+ic.bath+p.baths+'</span>'+(area?'<span>'+Math.round(area)+' m²</span>':'')+'</div>'+
+          '<div class="pc-price">'+fmtPrice(p.price)+(p.rent?'<small> '+esc(t.per_month)+'</small>':'')+'<i class="pc-go">→</i></div></div>'+
+        '</div></a>';
+    }).join('');
+    var r=document.getElementById('rail'); r.scrollLeft=0; railProgress();
+  }
+
+  function movePill(){
+    var on=document.querySelector('#pills button[aria-pressed=true]'), ind=document.getElementById('pillInd');
+    if(!on||!on.offsetWidth)return; ind.style.width=on.offsetWidth+'px'; ind.style.transform='translateX('+on.offsetLeft+'px)';
+  }
+  function railProgress(){
+    var r=document.getElementById('rail'), max=r.scrollWidth-r.clientWidth;
+    document.getElementById('railBar').style.width=(max>0?Math.max(.08,(r.scrollLeft+r.clientWidth)/r.scrollWidth):1)*100+'%';
+  }
+
+  function apply(){
+    var t=T();
+    document.documentElement.lang=t._html;
+    document.title=t.meta_title;
+    document.querySelector('meta[name=description]').content=t.meta_desc;
+    document.querySelectorAll('[data-t]').forEach(function(el){
+      var v=t[el.getAttribute('data-t')]; if(v==null) return;
+      if(el.getAttribute('data-t')==='fm_consent') v=v.replace('{terms}',link('legal.html',{doc:'terms'})).replace('{privacy}',link('legal.html',{doc:'privacy'})).replace(/ target="_blank" rel="noopener"/g,'');
+      el.innerHTML=v;
+    });
+    document.querySelectorAll('[data-ph]').forEach(function(el){el.placeholder=t[el.getAttribute('data-ph')]||''});
+    document.getElementById('langCode').textContent=lang.toUpperCase();
+
+    // language menus
+    var m='',d='';
+    ORDER.forEach(function(k){
+      var cur=k===lang;
+      m+='<button role="menuitem" data-lang="'+k+'" aria-current="'+cur+'">'+I18N[k]._name+'<span>'+k.toUpperCase()+'</span></button>';
+      d+='<button data-lang="'+k+'" aria-current="'+cur+'">'+I18N[k]._name+'</button>';
+    });
+    document.getElementById('langMenu').innerHTML=m;
+    document.getElementById('dLangs').innerHTML=d;
+
+    // region select / list / footer
+    var sel=document.getElementById('sRegion'), prev=sel.value;
+    sel.innerHTML='<option value="">'+esc(t.s_any_region)+'</option>'+REGIONS.map(function(r){return '<option value="'+r[1]+'">'+esc(t[r[0]])+'</option>'}).join('');
+    sel.value=prev||'';
+    updateGo();
+    document.getElementById('regList').innerHTML=REGIONS.map(function(r,i){
+      return '<a href="'+link('properties.html',{region:r[1]})+'"><span><span class="n">0'+(i+1)+'</span>'+esc(t[r[0]])+'</span><span class="arrow">→</span></a>';
+    }).join('');
+    document.getElementById('ftRegions').innerHTML=REGIONS.slice(0,6).map(function(r){
+      return '<li><a href="'+link('properties.html',{region:r[1]})+'">'+esc(t[r[0]])+'</a></li>';
+    }).join('');
+    document.getElementById('ls').innerHTML=LIFE.map(function(l){
+      return '<a href="'+link('properties.html',{life:l[1]})+'"><img src="img/'+l[2]+'" alt="" loading="lazy"><div><h3>'+esc(t[l[0]])+'</h3><small>'+esc(t.ls_explore)+' →</small></div></a>';
+    }).join('');
+
+    // deep links into current site
+    var links={aboutLink:link('about.html'),guideLink:link('guide.html'),lookLink:link('contact.html',{mode:'buy'}),listLink:link('contact.html',{mode:'sell'}),
+      ftAbout:link('about.html'),ftGuide:link('guide.html'),lgTerms:link('legal.html',{doc:'terms'}),lgPrivacy:link('legal.html',{doc:'privacy'}),lgCookies:link('legal.html',{doc:'privacy'})+'#cookies',lgRal:link('legal.html',{doc:'ral'})};
+    Object.keys(links).forEach(function(id){document.getElementById(id).href=links[id]});
+
+    renderGrid();
+    heroApply();
+  }
+
+  function updateGo(){var v=document.getElementById('sRegion').value;document.getElementById('sGo').href=link('properties.html',v?{region:v}:{})}
+  function loadExc(id){if(loadExc[id])return;loadExc[id]=1;window.__DETAIL=function(d){EXC[d.id]=d;var el=document.getElementById('spotExc');if(el)el.textContent=excerpt(d.id)};var s=document.createElement('script');s.src='data/p/'+id+'.js';document.body.appendChild(s)}
+
+  function setLang(k){
+    if(!I18N[k]){closeMenus();return}
+    lang=k; store('mercator_lang',k);
+    try{var u=new URL(location.href);u.searchParams.set('lang',k);history.replaceState(null,'',u)}catch(e){}
+    apply(); closeMenus();
+  }
+
+  function closeMenus(){
+    document.getElementById('langMenu').classList.remove('open');
+    document.getElementById('langBtn').setAttribute('aria-expanded','false');
+    document.getElementById('drawer').classList.remove('open');
+  }
+
+  // events
+  document.getElementById('langBtn').addEventListener('click',function(e){
+    e.stopPropagation();
+    var m=document.getElementById('langMenu'), o=!m.classList.contains('open');
+    m.classList.toggle('open',o); this.setAttribute('aria-expanded',o);
+  });
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-lang]'); if(b){setLang(b.getAttribute('data-lang'));return}
+    if(!e.target.closest('.langs')) document.getElementById('langMenu').classList.remove('open');
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenus()});
+  document.getElementById('burger').addEventListener('click',function(){document.getElementById('drawer').classList.add('open')});
+  document.getElementById('drawerX').addEventListener('click',closeMenus);
+  document.querySelectorAll('.drawer a').forEach(function(a){a.addEventListener('click',closeMenus)});
+  document.getElementById('sRegion').addEventListener('change',updateGo);
+  document.querySelectorAll('#pills button').forEach(function(b){
+    b.addEventListener('click',function(){
+      filter=b.getAttribute('data-f');
+      document.querySelectorAll('#pills button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+      var s=document.getElementById('spot'); s.classList.remove('swap'); void s.offsetWidth; s.classList.add('swap');
+      renderGrid();
+    });
+  });
+  window.addEventListener('resize',movePill);
+
+  // photo scrub (hover moves through the home's photos)
+  function scrubTo(el,k){
+    var fr=JSON.parse(el.getAttribute('data-frames')||'[]'); if(fr.length<2)return;
+    k=Math.max(0,Math.min(fr.length-1,k)); if(el._k===k)return; el._k=k;
+    el.querySelector('img').src=fr[k];
+    el.querySelectorAll('.sc-dots i').forEach(function(d,j){d.classList.toggle('on',j===k)});
+  }
+  document.addEventListener('mouseover',function(e){
+    var el=e.target.closest('.scrub'); if(!el||el._pre)return; el._pre=1;
+    JSON.parse(el.getAttribute('data-frames')||'[]').forEach(function(u){var im=new Image();im.src=u});
+  });
+  document.addEventListener('mousemove',function(e){
+    var el=e.target.closest('.scrub'); if(!el||dragging)return;
+    var r=el.getBoundingClientRect(), n=JSON.parse(el.getAttribute('data-frames')||'[]').length;
+    scrubTo(el,Math.floor((e.clientX-r.left)/r.width*n));
+  });
+  document.addEventListener('mouseout',function(e){
+    var el=e.target.closest('.scrub'); if(el&&!el.contains(e.relatedTarget))scrubTo(el,0);
+  });
+
+  // rail: arrows, drag, progress
+  var rail=document.getElementById('rail'), dragging=false, moved=false, sx=0, sl=0;
+  function step(){var c=rail.querySelector('.pc');return c?c.offsetWidth+24:400}
+  document.getElementById('railNext').addEventListener('click',function(){rail.scrollBy({left:step()*2,behavior:'smooth'})});
+  document.getElementById('railPrev').addEventListener('click',function(){rail.scrollBy({left:-step()*2,behavior:'smooth'})});
+  rail.addEventListener('scroll',railProgress,{passive:true});
+  rail.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse'||e.button!==0)return;dragging=true;moved=false;sx=e.clientX;sl=rail.scrollLeft});
+  rail.addEventListener('dragstart',function(e){e.preventDefault()});
+  window.addEventListener('pointermove',function(e){if(!dragging)return;var dx=e.clientX-sx;if(!moved&&Math.abs(dx)>6){moved=true;rail.classList.add('grab')}if(moved)rail.scrollLeft=sl-dx});
+  window.addEventListener('pointerup',function(){if(!dragging)return;dragging=false;rail.classList.remove('grab')});
+  rail.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation()}moved=false},true);
+
+  document.getElementById('refForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var q=document.getElementById('sRef').value.trim().replace(/\s+/g,'').toLowerCase(); if(!q) return;
+    var hit=PROPS.find(function(p){return p.ref.replace(/\s+/g,'').toLowerCase()===q});
+    location.href=hit?link('property.html',{id:hit.id}):link('properties.html',{q:document.getElementById('sRef').value.trim()});
+  });
+  document.getElementById('cform').addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=e.target, t=T(), err=document.getElementById('ferr');
+    if(!f.name.value.trim()||!/^\S+@\S+\.\S+$/.test(f.email.value)||!f.ok.checked){err.style.display='block';return}
+    err.style.display='none';
+    var body=t.fm_name+': '+f.name.value+'\n'+t.fm_email+': '+f.email.value+'\n'+t.fm_phone+': '+f.phone.value+'\n'+t.lang_label+': '+t._name+'\n\n'+f.msg.value;
+    location.href='mailto:mercator@mercator.pt?subject='+encodeURIComponent(t.fm_subject)+'&body='+encodeURIComponent(body);
+  });
+
+  var hd=document.getElementById('hd');
+  function onScroll(){hd.classList.toggle('solid',window.scrollY>40)}
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+  } else document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')});
+
+  /* ---------- cinematic hero ---------- */
+  var SLIDES=['26967021','26920975','26948793','27002199','26961882'], cur=0, DUR=7000, timer=null, firstRun=true;
+  var hero=document.getElementById('hero'), slidesEl=document.getElementById('slides');
+  slidesEl.innerHTML=SLIDES.map(function(id,i){return '<div class="slide'+(i?'':' on')+'"><img src="img/hero-'+id+'.jpg" alt="" '+(i?'loading="lazy"':'fetchpriority="high"')+'></div>'}).join('');
+  document.getElementById('scBars').innerHTML=SLIDES.map(function(_,i){return '<button data-slide="'+i+'" aria-label="'+(i+1)+'"><i></i></button>'}).join('');
+  hero.style.setProperty('--dur',DUR+'ms');
+
+  function splitTitle(){
+    var el=document.getElementById('heroTitle'), n=0;
+    (function walk(node){
+      Array.prototype.slice.call(node.childNodes).forEach(function(c){
+        if(c.nodeType===3){
+          var frag=document.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach(function(part){
+            if(!part)return;
+            if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(' '));return}
+            var w=document.createElement('span');w.className='w';
+            var s=document.createElement('span');s.textContent=part;s.style.animationDelay=(.15+n++*.08)+'s';
+            w.appendChild(s);frag.appendChild(w);
+          });
+          c.parentNode.replaceChild(frag,c);
+        } else walk(c);
+      });
+    })(el);
+  }
+
+  function showcase(){
+    var t=T(), id=SLIDES[cur], p=PROPS.find(function(x){return x.id===id}), L=p.t[lang];
+    var area=p.area;
+    var body=document.getElementById('scBody');
+    body.classList.remove('swap'); void body.offsetWidth; body.classList.add('swap');
+    body.innerHTML='<div class="sc-loc">'+esc(L.loc)+'</div><div class="sc-title">'+esc(L.title)+'</div>'+
+      '<div class="sc-meta"><span>'+ic.bed+p.beds+'</span><span>'+ic.bath+p.baths+'</span>'+(area?'<span>'+Math.round(area)+' m²</span>':'')+'<span class="sc-price">'+fmtPrice(p.price)+'</span></div>';
+    document.getElementById('scIdx').textContent=String(cur+1).padStart(2,'0')+' / '+String(SLIDES.length).padStart(2,'0');
+    document.getElementById('scLink').href='property.html?id='+id+'&lang='+lang;
+  }
+
+  function goSlide(i){
+    cur=(i+SLIDES.length)%SLIDES.length;
+    slidesEl.querySelectorAll('.slide').forEach(function(s,j){s.classList.toggle('on',j===cur)});
+    document.querySelectorAll('#scBars button').forEach(function(b,j){
+      b.classList.remove('on');b.classList.toggle('done',j<cur);
+      if(j===cur){void b.offsetWidth;b.classList.add('on')}
+    });
+    showcase(); schedule();
+  }
+  function schedule(){clearTimeout(timer);if(!hero.classList.contains('paused'))timer=setTimeout(function(){goSlide(cur+1)},DUR)}
+
+  function heroApply(){
+    splitTitle(); showcase();
+    if(firstRun){firstRun=false;goSlide(0)}
+  }
+
+  document.getElementById('scNext').addEventListener('click',function(){goSlide(cur+1)});
+  document.getElementById('scPrev').addEventListener('click',function(){goSlide(cur-1)});
+  document.getElementById('scBars').addEventListener('click',function(e){var b=e.target.closest('[data-slide]');if(b)goSlide(+b.getAttribute('data-slide'))});
+  var sc=document.getElementById('showcase');
+  sc.addEventListener('mouseenter',function(){hero.classList.add('paused');clearTimeout(timer)});
+  sc.addEventListener('mouseleave',function(){hero.classList.remove('paused');goSlide(cur)});
+  document.addEventListener('visibilitychange',function(){if(document.hidden)clearTimeout(timer);else goSlide(cur)});
+  // swipe on touch
+  var tx=null;
+  hero.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+  hero.addEventListener('touchend',function(e){if(tx==null)return;var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>60&&!e.target.closest('.search'))goSlide(cur+(dx<0?1:-1));tx=null});
+  // pointer parallax (desktop)
+  if(window.matchMedia('(pointer:fine)').matches&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    hero.addEventListener('mousemove',function(e){
+      var r=hero.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      slidesEl.style.transform='translate3d('+(-x*10)+'px,'+(-y*8)+'px,0)';
+    });
+    window.addEventListener('scroll',function(){var y=window.scrollY;if(y<innerHeight)slidesEl.style.transform='translate3d(0,'+(y*.25)+'px,0)'},{passive:true});
+  }
+
+  // count-up for trust stats
+  function countUp(el){
+    var txt=el.textContent, m=txt.match(/^(\D*)(\d+)(\D*)$/); if(!m)return;
+    var end=+m[2], start=end>1000?end-60:0, t0=null;
+    function f(ts){if(!t0)t0=ts;var k=Math.min((ts-t0)/1600,1),e=1-Math.pow(1-k,3);el.textContent=m[1]+Math.round(start+(end-start)*e)+m[3];if(k<1)requestAnimationFrame(f)}
+    requestAnimationFrame(f);
+  }
+  if('IntersectionObserver' in window){
+    var co=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){document.querySelectorAll('[data-count]').forEach(countUp);co.disconnect()}})},{threshold:.4});
+    co.observe(document.getElementById('trust'));
+  }
+
+
+  /* ---------- purchase journey (scroll-driven) ---------- */
+  (function(){
+    var list=document.getElementById('jList'), steps=[].slice.call(document.querySelectorAll('.jstep')), imgs=[].slice.call(document.querySelectorAll('#jFrame img')), cur=-1, ticking=false;
+    function upd(){
+      ticking=false;
+      var vh=innerHeight, mid=vh*.5, r=list.getBoundingClientRect();
+      var p=Math.max(0,Math.min(1,(mid-r.top)/r.height));
+      document.getElementById('jLine').style.height=(p*100)+'%';
+      var a=0; steps.forEach(function(s,i){var b=s.getBoundingClientRect();if(b.top<mid)a=i; s.classList.toggle('done',b.top<mid)});
+      if(a!==cur){cur=a;steps.forEach(function(s,i){s.classList.toggle('on',i===a)});imgs.forEach(function(m,i){m.classList.toggle('on',i===a)});
+        document.getElementById('jNum').textContent=String(a+1).padStart(2,'0');document.getElementById('jProg').style.width=((a+1)/6*100)+'%'}
+    }
+    window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd)}},{passive:true});
+    window.addEventListener('resize',upd); upd();
+  })();
+  lang=pickLang(); apply();
+  try{var u=new URL(location.href);if(u.searchParams.get('lang')!==lang){u.searchParams.set('lang',lang);history.replaceState(null,'',u)}}catch(e){}
+})();
+</script>
+</body>
+</html>
